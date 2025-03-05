@@ -10,7 +10,7 @@ load_dotenv()
 
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # Ensure this is updated with a valid token
+BOT_TOKEN = os.getenv("BOT_TOKEN")  
 PORT = int(os.getenv("PORT", 5000))
 # Configure logging with emojis
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - 💀<-🔫¸ %(message)s')
