@@ -10,8 +10,9 @@ load_dotenv()
 
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
-BOT_TOKEN = os.getenv("BOT_TOKEN")  
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 PORT = int(os.getenv("PORT", 5000))
+
 # Configure logging with emojis
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - 💀🔫¸ %(message)s')
 
@@ -49,7 +50,6 @@ async def delete_leave_message(client, message):
     except Exception as e:
         logging.error(f"⚠️ Error deleting leave message: {e}")
 
-
-
-Thread(target=keep_alive, daemon=True).start()
-bot_app.run()
+if __name__ == "__main__":
+    keep_alive()
+    bot_app.run()
