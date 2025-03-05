@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from flask import Flask
 import threading
+import time
 
 # Load environment variables from .env file
 load_dotenv()
@@ -24,6 +25,10 @@ flask_app = Flask(__name__)
 @flask_app.route('/')
 def home():
     return "Bot is running!"
+
+@flask_app.route('/ping')
+def ping():
+    return "pong"
 
 def run_web():
     flask_app.run(host='0.0.0.0', port=PORT)
@@ -49,6 +54,16 @@ async def delete_leave_message(client, message):
         logging.info(f"🗑️ Deleted leave message in {message.chat.title}")
     except Exception as e:
         logging.error(f"⚠️ Error deleting leave message: {e}")
+
+# Ping command
+@bot_app.on_message(filters.command("ping"))
+async def ping_command(client, message):
+    start_time = time.time()
+    await message.reply_text("pong")
+    end_time = time.time()
+    response_time = int((end_time - start_time) * 1000)
+    await message.reply_text(f"Response time: {response_time} ms")
+    logging.info(f"🏓 Ping command received and replied with pong in {response_time} ms")
 
 if __name__ == "__main__":
     keep_alive()
