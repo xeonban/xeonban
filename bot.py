@@ -49,4 +49,7 @@ async def delete_leave_message(client, message):
     except Exception as e:
         logging.error(f"⚠️ Error deleting leave message: {e}")
 
+
+
+Thread(target=keep_alive, daemon=True).start()
 bot_app.run()
